@@ -33,7 +33,7 @@ public class SettingsActivity extends Activity {
         Button saveButton = findViewById(R.id.btn_save_settings);
         saveButton.setOnClickListener(v -> {
             saveSettings();
-            Toast.makeText(context, "Settings saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "设置已保存", Toast.LENGTH_SHORT).show();
             finish();
         });
 
@@ -41,7 +41,7 @@ public class SettingsActivity extends Activity {
         resetButton.setOnClickListener(v -> {
             resetSettings();
             loadSettings();
-            Toast.makeText(context, "Settings reset", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "设置已重置", Toast.LENGTH_SHORT).show();
         });
     }
 

@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Video Settings"
+            android:text="视频设置"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -30,7 +30,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Resolution"
+                android:text="分辨率"
                 android:textColor="@color/white"/>
 
             <Spinner
@@ -51,7 +51,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Bitrate"
+                android:text="比特率"
                 android:textColor="@color/white"/>
 
             <Spinner
@@ -72,7 +72,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="FPS"
+                android:text="帧率"
                 android:textColor="@color/white"/>
 
             <Spinner
@@ -93,7 +93,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Codec"
+                android:text="视频编码器"
                 android:textColor="@color/white"/>
 
             <Spinner
@@ -108,14 +108,14 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="#323540"
-            android:text="No Video"
+            android:text="禁用视频"
             android:textColor="@color/white"
             android:layout_marginBottom="10dp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Audio Settings"
+            android:text="音频设置"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -126,7 +126,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="#323540"
-            android:text="Enable Audio"
+            android:text="启用音频"
             android:textColor="@color/white"
             android:layout_marginBottom="10dp"/>
 
@@ -141,7 +141,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Audio Codec"
+                android:text="音频编码器"
                 android:textColor="@color/white"/>
 
             <Spinner
@@ -162,7 +162,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Audio Bitrate"
+                android:text="音频比特率"
                 android:textColor="@color/white"/>
 
             <Spinner
@@ -175,7 +175,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Device Settings"
+            android:text="设备设置"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -192,7 +192,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Display"
+                android:text="显示设备"
                 android:textColor="@color/white"/>
 
             <Spinner
@@ -213,7 +213,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Rotation"
+                android:text="屏幕旋转"
                 android:textColor="@color/white"/>
 
             <Spinner
@@ -228,7 +228,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="#323540"
-            android:text="Show Touches"
+            android:text="显示触摸轨迹"
             android:textColor="@color/white"
             android:layout_marginBottom="10dp"/>
 
@@ -237,14 +237,14 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="#323540"
-            android:text="Stay Awake"
+            android:text="保持唤醒"
             android:textColor="@color/white"
             android:layout_marginBottom="10dp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Input Settings"
+            android:text="输入设置"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -261,7 +261,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Keyboard Inject"
+                android:text="键盘注入模式"
                 android:textColor="@color/white"/>
 
             <Spinner
@@ -276,14 +276,14 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="#323540"
-            android:text="Enable Control"
+            android:text="启用控制"
             android:textColor="@color/white"
             android:layout_marginBottom="10dp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Record Settings"
+            android:text="录制设置"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -294,7 +294,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="#323540"
-            android:text="Enable Recording"
+            android:text="启用录制"
             android:textColor="@color/white"
             android:layout_marginBottom="10dp"/>
 
@@ -309,7 +309,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Record Format"
+                android:text="录制格式"
                 android:textColor="@color/white"/>
 
             <Spinner
@@ -330,7 +330,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Record Path"
+                android:text="录制路径"
                 android:textColor="@color/white"/>
 
             <EditText
@@ -352,7 +352,7 @@
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_weight="1"
-                android:text="Save"
+                android:text="保存"
                 android:textColor="@color/white"
                 android:layout_marginRight="10dp"/>
 
@@ -361,7 +361,7 @@
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_weight="1"
-                android:text="Reset"
+                android:text="重置"
                 android:textColor="@color/white"/>
         </LinearLayout>
     </LinearLayout>
