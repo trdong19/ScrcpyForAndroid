@@ -17,16 +17,12 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
-    - name: Decode Keystore
-      env:
-        ENCODED_STRING: ${{ secrets.SIGNING_KEY }}  # Uses the encoded signing key stored in GitHub Secrets.
+    - name: Generate Debug Keystore
       run: |
-        if [ -n "$ENCODED_STRING" ]; then
-          echo $ENCODED_STRING | base64 -di > app/scrcpy.jks
-          echo "Keystore decoded successfully."
-        else
-          echo "No signing key found, skipping..."
-        fi
+        mkdir -p /home/runner/.android
+        keytool -genkey -v -keystore /home/runner/.android/debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug, O=Android, C=US"
+        echo "Debug keystore generated successfully at /home/runner/.android/debug.keystore"
+        ls -la /home/runner/.android/
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
