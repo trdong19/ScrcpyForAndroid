@@ -254,6 +254,12 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
             connectScrcpyServer(serverAdr);
         });
 
+        Button settingsButton = findViewById(R.id.button_settings);
+        settingsButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent);
+        });
+
 //        floatButton.setOnClickListener(v -> {
 //            getAttributes();
 //            showDisplayWindow();

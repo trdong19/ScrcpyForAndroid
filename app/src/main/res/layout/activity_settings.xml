@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1D2228">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Video Settings"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:padding="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#323540"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Resolution"
+                android:textColor="@color/white"/>
+
+            <Spinner
+                android:id="@+id/spinner_video_resolution"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:entries="@array/options_resolution_values"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#323540"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bitrate"
+                android:textColor="@color/white"/>
+
+            <Spinner
+                android:id="@+id/spinner_video_bitrate"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:entries="@array/options_bitrate_keys"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#323540"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="FPS"
+                android:textColor="@color/white"/>
+
+            <Spinner
+                android:id="@+id/spinner_fps"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:entries="@array/options_fps_values"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#323540"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Codec"
+                android:textColor="@color/white"/>
+
+            <Spinner
+                android:id="@+id/spinner_video_codec"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:entries="@array/options_video_codec"/>
+        </LinearLayout>
+
+        <Switch
+            android:id="@+id/switch_no_video"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#323540"
+            android:text="No Video"
+            android:textColor="@color/white"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Audio Settings"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:padding="10dp"/>
+
+        <Switch
+            android:id="@+id/switch_audio"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#323540"
+            android:text="Enable Audio"
+            android:textColor="@color/white"
+            android:layout_marginBottom="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#323540"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Audio Codec"
+                android:textColor="@color/white"/>
+
+            <Spinner
+                android:id="@+id/spinner_audio_codec"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:entries="@array/options_audio_codec"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#323540"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Audio Bitrate"
+                android:textColor="@color/white"/>
+
+            <Spinner
+                android:id="@+id/spinner_audio_bitrate"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:entries="@array/options_audio_bitrate"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Device Settings"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:padding="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#323540"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Display"
+                android:textColor="@color/white"/>
+
+            <Spinner
+                android:id="@+id/spinner_display"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:entries="@array/options_display"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#323540"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rotation"
+                android:textColor="@color/white"/>
+
+            <Spinner
+                android:id="@+id/spinner_rotation"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:entries="@array/options_rotation"/>
+        </LinearLayout>
+
+        <Switch
+            android:id="@+id/switch_show_touches"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#323540"
+            android:text="Show Touches"
+            android:textColor="@color/white"
+            android:layout_marginBottom="10dp"/>
+
+        <Switch
+            android:id="@+id/switch_stay_awake"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#323540"
+            android:text="Stay Awake"
+            android:textColor="@color/white"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Input Settings"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:padding="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#323540"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Keyboard Inject"
+                android:textColor="@color/white"/>
+
+            <Spinner
+                android:id="@+id/spinner_keyboard_inject"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:entries="@array/options_keyboard_inject"/>
+        </LinearLayout>
+
+        <Switch
+            android:id="@+id/switch_control"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#323540"
+            android:text="Enable Control"
+            android:textColor="@color/white"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Record Settings"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:padding="10dp"/>
+
+        <Switch
+            android:id="@+id/switch_record"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#323540"
+            android:text="Enable Recording"
+            android:textColor="@color/white"
+            android:layout_marginBottom="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#323540"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Record Format"
+                android:textColor="@color/white"/>
+
+            <Spinner
+                android:id="@+id/spinner_record_format"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:entries="@array/options_record_format"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#323540"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Record Path"
+                android:textColor="@color/white"/>
+
+            <EditText
+                android:id="@+id/edit_record_path"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="/sdcard/scrcpy/"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <Button
+                android:id="@+id/btn_save_settings"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="Save"
+                android:textColor="@color/white"
+                android:layout_marginRight="10dp"/>
+
+            <Button
+                android:id="@+id/btn_reset_settings"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="Reset"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

@@ -59,4 +59,11 @@ public class PreUtils {
         SharedPreferences preferences = context.getSharedPreferences(User, Context.MODE_PRIVATE);
         return preferences.getBoolean(key, defaultStr);
     }
+
+    public static void clearAll(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences(User, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.clear();
+        editor.commit();
+    }
 }
