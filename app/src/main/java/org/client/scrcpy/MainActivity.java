@@ -802,7 +802,9 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
 
     private ScrcpyOptions buildScrcpyOptions() {
         ScrcpyOptions options = new ScrcpyOptions();
-        options.customArgs = PreUtils.get(context, Constant.PREF_CUSTOM_ARGS, "");
+        String customArgs = PreUtils.get(context, Constant.PREF_CUSTOM_ARGS, "");
+        options.customArgs = customArgs;
+        Log.i("Scrcpy", "buildScrcpyOptions: customArgs = '" + customArgs + "'");
         return options;
     }
 

@@ -81,10 +81,12 @@ public class SendCommands {
                 commandList.add("--record=" + options.recordPath);
             }
             if (options.customArgs != null && !options.customArgs.isEmpty()) {
+                Log.i("Scrcpy", "Processing customArgs: " + options.customArgs);
                 String[] customArgsArray = options.customArgs.split("\\s+");
                 for (String arg : customArgsArray) {
                     if (!arg.isEmpty()) {
                         commandList.add(arg);
+                        Log.i("Scrcpy", "Added custom arg: " + arg);
                     }
                 }
             }

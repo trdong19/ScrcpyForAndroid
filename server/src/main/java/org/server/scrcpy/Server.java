@@ -96,9 +96,10 @@ public final class Server {
         options.setTunnelForward(tunnelForward);
         
         // 处理剩余的自定义参数
+        Ln.i("Starting to parse custom arguments, total args: " + args.length);
         for (int i = 4; i < args.length; i++) {
             String arg = args[i];
-            Ln.i("Parsing argument: " + arg);
+            Ln.i("Parsing argument[" + i + "]: " + arg);
             
             if (arg.equals("--no-display")) {
                 options.setNoDisplay(true);
