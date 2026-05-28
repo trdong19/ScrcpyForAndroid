@@ -26,22 +26,72 @@ public class SendCommands {
     }
 
     public CmdStatus SendAdbCommands(Context context, final String ip, int port, int forwardport, String localip, int bitrate, int size) {
-        return this.SendAdbCommands(context, null, ip, port, forwardport, localip, bitrate, size);
+        return this.SendAdbCommands(context, null, ip, port, forwardport, localip, bitrate, size, null);
     }
 
     public CmdStatus SendAdbCommands(Context context, final byte[] fileBase64, final String ip, int port, int forwardport, String localip, int bitrate, int size) {
+        return this.SendAdbCommands(context, fileBase64, ip, port, forwardport, localip, bitrate, size, null);
+    }
+
+    public CmdStatus SendAdbCommands(Context context, final byte[] fileBase64, final String ip, int port, int forwardport, String localip, int bitrate, int size, ScrcpyOptions options) {
         AtomicReference<CmdStatus> status = new AtomicReference<>(CmdStatus.RUNNING);
-        String[] commands = new String[]{
-                "-s", ip + ":" + port,
-                "shell",
-                " CLASSPATH=/data/local/tmp/scrcpy-server.jar",
-                "app_process",
-                "/",
-                "org.server.scrcpy.Server",
-                "/" + localip,
-                Long.toString(size),
-                Long.toString(bitrate) + ";"
-        };
+        
+        java.util.List<String> commandList = new java.util.ArrayList<>();
+        commandList.add("-s");
+        commandList.add(ip + ":" + port);
+        commandList.add("shell");
+        commandList.add("CLASSPATH=/data/local/tmp/scrcpy-server.jar");
+        commandList.add("app_process");
+        commandList.add("/");
+        commandList.add("org.server.scrcpy.Server");
+        commandList.add("/" + localip);
+        commandList.add(Long.toString(size));
+        commandList.add(Long.toString(bitrate));
+
+        if (options != null) {
+            if (options.videoCodec != null && !options.videoCodec.isEmpty()) {
+                commandList.add("--video-codec=" + options.videoCodec);
+            }
+            if (options.videoFps > 0) {
+                commandList.add("--video-fps=" + options.videoFps);
+            }
+            if (options.audioCodec != null && !options.audioCodec.isEmpty()) {
+                commandList.add("--audio-codec=" + options.audioCodec);
+            }
+            if (options.audioBitrate > 0) {
+                commandList.add("--audio-bit-rate=" + options.audioBitrate);
+            }
+            if (options.displayId >= 0) {
+                commandList.add("--display=" + options.displayId);
+            }
+            if (options.rotation >= 0) {
+                commandList.add("--rotation=" + options.rotation);
+            }
+            if (options.showTouches) {
+                commandList.add("--show-touches");
+            }
+            if (options.stayAwake) {
+                commandList.add("--stay-awake");
+            }
+            if (options.noControl) {
+                commandList.add("--no-control");
+            }
+            if (options.noVideo) {
+                commandList.add("--no-video");
+            }
+            if (options.noAudio) {
+                commandList.add("--no-audio");
+            }
+            if (options.recordPath != null && !options.recordPath.isEmpty()) {
+                commandList.add("--record=" + options.recordPath);
+            }
+            if (options.keyboardInject != null && !options.keyboardInject.isEmpty()) {
+                commandList.add("--keyboard-inject=" + options.keyboardInject);
+            }
+        }
+
+        String[] commands = commandList.toArray(new String[0]);
+        
         ThreadUtils.execute(() -> {
             try {
                 boolean serverIsRunning = AdbHelper.checkAdbServer();
