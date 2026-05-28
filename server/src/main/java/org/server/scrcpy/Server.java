@@ -1,6 +1,7 @@
 package org.server.scrcpy;
 
 import org.server.scrcpy.util.Workarounds;
+import org.server.scrcpy.wrappers.ServiceManager;
 
 import java.io.IOException;
 
