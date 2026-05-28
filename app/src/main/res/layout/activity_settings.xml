@@ -241,10 +241,28 @@
             android:textColor="@color/white"
             android:layout_marginBottom="10dp"/>
 
+        <Switch
+            android:id="@+id/switch_turn_screen_off"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#323540"
+            android:text="控制时关闭屏幕"
+            android:textColor="@color/white"
+            android:layout_marginBottom="10dp"/>
+
+        <Switch
+            android:id="@+id/switch_turn_screen_off_on_close"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#323540"
+            android:text="控制结束关闭屏幕"
+            android:textColor="@color/white"
+            android:layout_marginBottom="10dp"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="输入设置"
+            android:text="高级设置"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -261,24 +279,25 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="键盘注入模式"
+                android:text="自定义参数"
                 android:textColor="@color/white"/>
 
-            <Spinner
-                android:id="@+id/spinner_keyboard_inject"
+            <EditText
+                android:id="@+id/edit_custom_args"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:entries="@array/options_keyboard_inject"/>
-        </LinearLayout>
+                android:text=""
+                android:textColor="@color/white"
+                android:hint="例如: --max-size=1024 --lock-video-orientation=0"/>
 
-        <Switch
-            android:id="@+id/switch_control"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="#323540"
-            android:text="启用控制"
-            android:textColor="@color/white"
-            android:layout_marginBottom="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="注意：录入参数将会直接附加到scrcpy命令中，如果存在重复的参数，并不会自动进行过滤。"
+                android:textColor="#888888"
+                android:textSize="12sp"
+                android:layout_marginTop="5dp"/>
+        </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -362,6 +381,15 @@
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:text="重置"
+                android:textColor="@color/white"
+                android:layout_marginRight="10dp"/>
+
+            <Button
+                android:id="@+id/btn_help"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="帮助"
                 android:textColor="@color/white"/>
         </LinearLayout>
     </LinearLayout>
