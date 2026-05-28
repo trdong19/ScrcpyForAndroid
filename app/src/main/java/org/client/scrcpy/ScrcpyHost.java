@@ -42,7 +42,6 @@ public class ScrcpyHost implements Scrcpy.ServiceCallbacks {
     private static float remote_device_width;
     private static float remote_device_height;
 
-    private byte[] fileBase64;
     private SendCommands sendCommands;
     private String local_ip;
 
@@ -61,7 +60,7 @@ public class ScrcpyHost implements Scrcpy.ServiceCallbacks {
             if (first_time) {
                 scrcpy.start(surface, serverAdr, screenHeight, screenWidth, 50);
                 int count = 100;
-                while (count != 0 && !scrcpy.check_socket_connection()) {
+                while (count != 0 &amp;&amp; !scrcpy.check_socket_connection()) {
                     count--;
                     try {
                         Thread.sleep(100);
@@ -117,8 +116,6 @@ public class ScrcpyHost implements Scrcpy.ServiceCallbacks {
             outputStream.write(buffer);
             outputStream.flush();
             outputStream.close();
-
-            fileBase64 = Base64.encode(buffer, 2);
         } catch (IOException e) {
             Log.e("Asset Manager", e.getMessage());
         }
@@ -151,11 +148,11 @@ public class ScrcpyHost implements Scrcpy.ServiceCallbacks {
             } else {
                 serverHost = serverAdr;
             }
-            if (sendCommands.SendAdbCommands(context, fileBase64, serverHost,
+            if (sendCommands.executeAdbCommands(context, serverHost,
                     serverPort,
                     localForwardPort,
                     Scrcpy.LOCAL_IP,
-                    videoBitrate, Math.max(screenHeight, screenWidth)) == SendCommands.CmdStatus.SUCCESS) {
+                    videoBitrate, Math.max(screenHeight, screenWidth), null) == SendCommands.CmdStatus.SUCCESS) {
                 start_screen_copy_magic();
             } else {
                 Toast.makeText(context, "Network OR ADB connection failed", Toast.LENGTH_SHORT).show();
@@ -177,17 +174,17 @@ public class ScrcpyHost implements Scrcpy.ServiceCallbacks {
         try {
             InetAddress ipv4 = null;
             InetAddress ipv6 = null;
-            for (Enumeration<NetworkInterface> en = NetworkInterface
+            for (Enumeration&lt;NetworkInterface&gt; en = NetworkInterface
                     .getNetworkInterfaces(); en.hasMoreElements(); ) {
                 NetworkInterface int_f = en.nextElement();
-                for (Enumeration<InetAddress> enumIpAddr = int_f
+                for (Enumeration&lt;InetAddress&gt; enumIpAddr = int_f
                         .getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
                     InetAddress inetAddress = enumIpAddr.nextElement();
                     if (inetAddress instanceof Inet6Address) {
                         ipv6 = inetAddress;
                         continue;
                     }
-                    if (inetAddress.isLoopbackAddress() && inetAddress instanceof Inet4Address) {
+                    if (inetAddress.isLoopbackAddress() &amp;&amp; inetAddress instanceof Inet4Address) {
                         ipv4 = inetAddress;
                         continue;
                     }
