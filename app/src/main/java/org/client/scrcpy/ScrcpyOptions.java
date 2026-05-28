@@ -9,11 +9,12 @@ public class ScrcpyOptions {
     public int rotation;
     public boolean showTouches;
     public boolean stayAwake;
-    public boolean noControl;
     public boolean noVideo;
     public boolean noAudio;
     public String recordPath;
-    public String keyboardInject;
+    public boolean turnScreenOff;
+    public boolean turnScreenOffOnClose;
+    public String customArgs;
 
     public ScrcpyOptions() {
         this.videoCodec = "";
@@ -24,10 +25,11 @@ public class ScrcpyOptions {
         this.rotation = -1;
         this.showTouches = false;
         this.stayAwake = false;
-        this.noControl = false;
         this.noVideo = false;
         this.noAudio = false;
         this.recordPath = "";
-        this.keyboardInject = "";
+        this.turnScreenOff = false;
+        this.turnScreenOffOnClose = false;
+        this.customArgs = "";
     }
 }
