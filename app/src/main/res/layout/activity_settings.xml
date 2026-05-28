@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="视频设置"
+            android:text="自定义参数"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -26,269 +26,17 @@
             android:orientation="vertical"
             android:padding="10dp"
             android:layout_marginBottom="10dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="分辨率"
-                android:textColor="@color/white"/>
-
-            <Spinner
-                android:id="@+id/spinner_video_resolution"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:entries="@array/options_resolution_values"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#323540"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:layout_marginBottom="10dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="比特率"
-                android:textColor="@color/white"/>
-
-            <Spinner
-                android:id="@+id/spinner_video_bitrate"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:entries="@array/options_bitrate_keys"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#323540"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:layout_marginBottom="10dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="帧率"
-                android:textColor="@color/white"/>
-
-            <Spinner
-                android:id="@+id/spinner_fps"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:entries="@array/options_fps_values"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#323540"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:layout_marginBottom="10dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="视频编码器"
-                android:textColor="@color/white"/>
-
-            <Spinner
-                android:id="@+id/spinner_video_codec"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:entries="@array/options_video_codec"/>
-        </LinearLayout>
-
-        <Switch
-            android:id="@+id/switch_no_video"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="#323540"
-            android:text="禁用视频"
-            android:textColor="@color/white"
-            android:layout_marginBottom="10dp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="音频设置"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:padding="10dp"/>
-
-        <Switch
-            android:id="@+id/switch_audio"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="#323540"
-            android:text="启用音频"
-            android:textColor="@color/white"
-            android:layout_marginBottom="10dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#323540"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:layout_marginBottom="10dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="音频编码器"
-                android:textColor="@color/white"/>
-
-            <Spinner
-                android:id="@+id/spinner_audio_codec"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:entries="@array/options_audio_codec"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#323540"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:layout_marginBottom="10dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="音频比特率"
-                android:textColor="@color/white"/>
-
-            <Spinner
-                android:id="@+id/spinner_audio_bitrate"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:entries="@array/options_audio_bitrate"/>
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="设备设置"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:padding="10dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#323540"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:layout_marginBottom="10dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="显示设备"
-                android:textColor="@color/white"/>
-
-            <Spinner
-                android:id="@+id/spinner_display"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:entries="@array/options_display"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#323540"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:layout_marginBottom="10dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="屏幕旋转"
-                android:textColor="@color/white"/>
-
-            <Spinner
-                android:id="@+id/spinner_rotation"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:entries="@array/options_rotation"/>
-        </LinearLayout>
-
-        <Switch
-            android:id="@+id/switch_show_touches"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="#323540"
-            android:text="显示触摸轨迹"
-            android:textColor="@color/white"
-            android:layout_marginBottom="10dp"/>
-
-        <Switch
-            android:id="@+id/switch_stay_awake"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="#323540"
-            android:text="保持唤醒"
-            android:textColor="@color/white"
-            android:layout_marginBottom="10dp"/>
-
-        <Switch
-            android:id="@+id/switch_turn_screen_off"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="#323540"
-            android:text="控制时关闭屏幕"
-            android:textColor="@color/white"
-            android:layout_marginBottom="10dp"/>
-
-        <Switch
-            android:id="@+id/switch_turn_screen_off_on_close"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="#323540"
-            android:text="控制结束关闭屏幕"
-            android:textColor="@color/white"
-            android:layout_marginBottom="10dp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="高级设置"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:padding="10dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#323540"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:layout_marginBottom="10dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="自定义参数"
-                android:textColor="@color/white"/>
 
             <EditText
                 android:id="@+id/edit_custom_args"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
+                android:minHeight="80dp"
                 android:text=""
                 android:textColor="@color/white"
-                android:hint="例如: --max-size=1024 --lock-video-orientation=0"/>
+                android:hint="例如: --max-size=1024 --lock-video-orientation=0"
+                android:gravity="top|start"
+                android:background="@null"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -302,63 +50,22 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="录制设置"
+            android:text="Scrcpy命令参考"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
             android:padding="10dp"/>
 
-        <Switch
-            android:id="@+id/switch_record"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="#323540"
-            android:text="启用录制"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_command_help"
             android:textColor="@color/white"
+            android:textSize="13sp"
+            android:background="#323540"
+            android:padding="10dp"
+            android:lineSpacingExtra="4dp"
             android:layout_marginBottom="10dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#323540"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:layout_marginBottom="10dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="录制格式"
-                android:textColor="@color/white"/>
-
-            <Spinner
-                android:id="@+id/spinner_record_format"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:entries="@array/options_record_format"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#323540"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:layout_marginBottom="10dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="录制路径"
-                android:textColor="@color/white"/>
-
-            <EditText
-                android:id="@+id/edit_record_path"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:text="/sdcard/scrcpy/"
-                android:textColor="@color/white"/>
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -381,15 +88,6 @@
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:text="重置"
-                android:textColor="@color/white"
-                android:layout_marginRight="10dp"/>
-
-            <Button
-                android:id="@+id/btn_help"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_weight="1"
-                android:text="帮助"
                 android:textColor="@color/white"/>
         </LinearLayout>
     </LinearLayout>
