@@ -27,45 +27,50 @@ public class SettingsActivity extends Activity {
         initVideoSettings();
         initAudioSettings();
         initDeviceSettings();
-        initInputSettings();
         initRecordSettings();
 
         Button saveButton = findViewById(R.id.btn_save_settings);
-        saveButton.setOnClickListener(v -> {
+        saveButton.setOnClickListener(v -&gt; {
             saveSettings();
             Toast.makeText(context, "设置已保存", Toast.LENGTH_SHORT).show();
             finish();
         });
 
         Button resetButton = findViewById(R.id.btn_reset_settings);
-        resetButton.setOnClickListener(v -> {
+        resetButton.setOnClickListener(v -&gt; {
             resetSettings();
             loadSettings();
             Toast.makeText(context, "设置已重置", Toast.LENGTH_SHORT).show();
+        });
+
+        Button helpButton = findViewById(R.id.btn_help);
+        helpButton.setOnClickListener(v -&gt; {
+            Intent intent = new Intent(SettingsActivity.this, HelpActivity.class);
+            startActivity(intent);
         });
     }
 
     private void initVideoSettings() {
         Spinner resolutionSpinner = findViewById(R.id.spinner_video_resolution);
-        ArrayAdapter<CharSequence> resolutionAdapter = ArrayAdapter.createFromResource(this,
+        ArrayAdapter&lt;CharSequence&gt; resolutionAdapter = ArrayAdapter.createFromResource(this,
                 R.array.options_resolution_values, android.R.layout.simple_spinner_item);
         resolutionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         resolutionSpinner.setAdapter(resolutionAdapter);
 
         Spinner bitrateSpinner = findViewById(R.id.spinner_video_bitrate);
-        ArrayAdapter<CharSequence> bitrateAdapter = ArrayAdapter.createFromResource(this,
+        ArrayAdapter&lt;CharSequence&gt; bitrateAdapter = ArrayAdapter.createFromResource(this,
                 R.array.options_bitrate_keys, android.R.layout.simple_spinner_item);
         bitrateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         bitrateSpinner.setAdapter(bitrateAdapter);
 
         Spinner fpsSpinner = findViewById(R.id.spinner_fps);
-        ArrayAdapter<CharSequence> fpsAdapter = ArrayAdapter.createFromResource(this,
+        ArrayAdapter&lt;CharSequence&gt; fpsAdapter = ArrayAdapter.createFromResource(this,
                 R.array.options_fps_values, android.R.layout.simple_spinner_item);
         fpsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         fpsSpinner.setAdapter(fpsAdapter);
 
         Spinner codecSpinner = findViewById(R.id.spinner_video_codec);
-        ArrayAdapter<CharSequence> codecAdapter = ArrayAdapter.createFromResource(this,
+        ArrayAdapter&lt;CharSequence&gt; codecAdapter = ArrayAdapter.createFromResource(this,
                 R.array.options_video_codec, android.R.layout.simple_spinner_item);
         codecAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         codecSpinner.setAdapter(codecAdapter);
@@ -73,13 +78,13 @@ public class SettingsActivity extends Activity {
 
     private void initAudioSettings() {
         Spinner audioCodecSpinner = findViewById(R.id.spinner_audio_codec);
-        ArrayAdapter<CharSequence> audioCodecAdapter = ArrayAdapter.createFromResource(this,
+        ArrayAdapter&lt;CharSequence&gt; audioCodecAdapter = ArrayAdapter.createFromResource(this,
                 R.array.options_audio_codec, android.R.layout.simple_spinner_item);
         audioCodecAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         audioCodecSpinner.setAdapter(audioCodecAdapter);
 
         Spinner audioBitrateSpinner = findViewById(R.id.spinner_audio_bitrate);
-        ArrayAdapter<CharSequence> audioBitrateAdapter = ArrayAdapter.createFromResource(this,
+        ArrayAdapter&lt;CharSequence&gt; audioBitrateAdapter = ArrayAdapter.createFromResource(this,
                 R.array.options_audio_bitrate, android.R.layout.simple_spinner_item);
         audioBitrateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         audioBitrateSpinner.setAdapter(audioBitrateAdapter);
@@ -87,29 +92,21 @@ public class SettingsActivity extends Activity {
 
     private void initDeviceSettings() {
         Spinner displaySpinner = findViewById(R.id.spinner_display);
-        ArrayAdapter<CharSequence> displayAdapter = ArrayAdapter.createFromResource(this,
+        ArrayAdapter&lt;CharSequence&gt; displayAdapter = ArrayAdapter.createFromResource(this,
                 R.array.options_display, android.R.layout.simple_spinner_item);
         displayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         displaySpinner.setAdapter(displayAdapter);
 
         Spinner rotationSpinner = findViewById(R.id.spinner_rotation);
-        ArrayAdapter<CharSequence> rotationAdapter = ArrayAdapter.createFromResource(this,
+        ArrayAdapter&lt;CharSequence&gt; rotationAdapter = ArrayAdapter.createFromResource(this,
                 R.array.options_rotation, android.R.layout.simple_spinner_item);
         rotationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         rotationSpinner.setAdapter(rotationAdapter);
     }
 
-    private void initInputSettings() {
-        Spinner keyboardInjectSpinner = findViewById(R.id.spinner_keyboard_inject);
-        ArrayAdapter<CharSequence> keyboardAdapter = ArrayAdapter.createFromResource(this,
-                R.array.options_keyboard_inject, android.R.layout.simple_spinner_item);
-        keyboardAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        keyboardInjectSpinner.setAdapter(keyboardAdapter);
-    }
-
     private void initRecordSettings() {
         Spinner recordFormatSpinner = findViewById(R.id.spinner_record_format);
-        ArrayAdapter<CharSequence> recordFormatAdapter = ArrayAdapter.createFromResource(this,
+        ArrayAdapter&lt;CharSequence&gt; recordFormatAdapter = ArrayAdapter.createFromResource(this,
                 R.array.options_record_format, android.R.layout.simple_spinner_item);
         recordFormatAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         recordFormatSpinner.setAdapter(recordFormatAdapter);
@@ -152,11 +149,14 @@ public class SettingsActivity extends Activity {
         Switch stayAwakeSwitch = findViewById(R.id.switch_stay_awake);
         PreUtils.put(context, Constant.PREF_STAY_AWAKE, stayAwakeSwitch.isChecked());
 
-        Spinner keyboardInjectSpinner = findViewById(R.id.spinner_keyboard_inject);
-        PreUtils.put(context, Constant.PREF_KEYBOARD_INJECT, keyboardInjectSpinner.getSelectedItemPosition());
+        Switch turnScreenOffSwitch = findViewById(R.id.switch_turn_screen_off);
+        PreUtils.put(context, Constant.PREF_TURN_SCREEN_OFF, turnScreenOffSwitch.isChecked());
 
-        Switch controlSwitch = findViewById(R.id.switch_control);
-        PreUtils.put(context, Constant.PREF_CONTROL_ENABLE, controlSwitch.isChecked());
+        Switch turnScreenOffOnCloseSwitch = findViewById(R.id.switch_turn_screen_off_on_close);
+        PreUtils.put(context, Constant.PREF_TURN_SCREEN_OFF_ON_CLOSE, turnScreenOffOnCloseSwitch.isChecked());
+
+        EditText customArgsEdit = findViewById(R.id.edit_custom_args);
+        PreUtils.put(context, Constant.PREF_CUSTOM_ARGS, customArgsEdit.getText().toString());
 
         Switch recordSwitch = findViewById(R.id.switch_record);
         PreUtils.put(context, Constant.PREF_RECORD_ENABLE, recordSwitch.isChecked());
@@ -205,11 +205,14 @@ public class SettingsActivity extends Activity {
         Switch stayAwakeSwitch = findViewById(R.id.switch_stay_awake);
         stayAwakeSwitch.setChecked(PreUtils.get(context, Constant.PREF_STAY_AWAKE, false));
 
-        Spinner keyboardInjectSpinner = findViewById(R.id.spinner_keyboard_inject);
-        keyboardInjectSpinner.setSelection(PreUtils.get(context, Constant.PREF_KEYBOARD_INJECT, 0));
+        Switch turnScreenOffSwitch = findViewById(R.id.switch_turn_screen_off);
+        turnScreenOffSwitch.setChecked(PreUtils.get(context, Constant.PREF_TURN_SCREEN_OFF, false));
 
-        Switch controlSwitch = findViewById(R.id.switch_control);
-        controlSwitch.setChecked(PreUtils.get(context, Constant.PREF_CONTROL_ENABLE, true));
+        Switch turnScreenOffOnCloseSwitch = findViewById(R.id.switch_turn_screen_off_on_close);
+        turnScreenOffOnCloseSwitch.setChecked(PreUtils.get(context, Constant.PREF_TURN_SCREEN_OFF_ON_CLOSE, false));
+
+        EditText customArgsEdit = findViewById(R.id.edit_custom_args);
+        customArgsEdit.setText(PreUtils.get(context, Constant.PREF_CUSTOM_ARGS, ""));
 
         Switch recordSwitch = findViewById(R.id.switch_record);
         recordSwitch.setChecked(PreUtils.get(context, Constant.PREF_RECORD_ENABLE, false));
