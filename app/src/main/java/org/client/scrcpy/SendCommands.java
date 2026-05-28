@@ -25,15 +25,7 @@ public class SendCommands {
 
     }
 
-    public CmdStatus SendAdbCommands(Context context, final String ip, int port, int forwardport, String localip, int bitrate, int size) {
-        return this.SendAdbCommands(context, null, ip, port, forwardport, localip, bitrate, size, null);
-    }
-
-    public CmdStatus SendAdbCommands(Context context, final byte[] fileBase64, final String ip, int port, int forwardport, String localip, int bitrate, int size) {
-        return this.SendAdbCommands(context, fileBase64, ip, port, forwardport, localip, bitrate, size, null);
-    }
-
-    public CmdStatus SendAdbCommands(Context context, final byte[] fileBase64, final String ip, int port, int forwardport, String localip, int bitrate, int size, ScrcpyOptions options) {
+    public CmdStatus executeAdbCommands(Context context, final String ip, int port, int forwardport, String localip, int bitrate, int size, ScrcpyOptions options) {
         AtomicReference<CmdStatus> status = new AtomicReference<>(CmdStatus.RUNNING);
         
         java.util.List<String> commandList = new java.util.ArrayList<>();
@@ -73,8 +65,11 @@ public class SendCommands {
             if (options.stayAwake) {
                 commandList.add("--stay-awake");
             }
-            if (options.noControl) {
-                commandList.add("--no-control");
+            if (options.turnScreenOff) {
+                commandList.add("--turn-screen-off");
+            }
+            if (options.turnScreenOffOnClose) {
+                commandList.add("--turn-screen-off-on-close");
             }
             if (options.noVideo) {
                 commandList.add("--no-video");
@@ -85,8 +80,13 @@ public class SendCommands {
             if (options.recordPath != null && !options.recordPath.isEmpty()) {
                 commandList.add("--record=" + options.recordPath);
             }
-            if (options.keyboardInject != null && !options.keyboardInject.isEmpty()) {
-                commandList.add("--keyboard-inject=" + options.keyboardInject);
+            if (options.customArgs != null && !options.customArgs.isEmpty()) {
+                String[] customArgsArray = options.customArgs.split("\\s+");
+                for (String arg : customArgsArray) {
+                    if (!arg.isEmpty()) {
+                        commandList.add(arg);
+                    }
+                }
             }
         }
 
