@@ -30,47 +30,56 @@ public class SettingsActivity extends Activity {
         initRecordSettings();
 
         Button saveButton = findViewById(R.id.btn_save_settings);
-        saveButton.setOnClickListener(v -&gt; {
-            saveSettings();
-            Toast.makeText(context, "设置已保存", Toast.LENGTH_SHORT).show();
-            finish();
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveSettings();
+                Toast.makeText(context, "Settings saved", Toast.LENGTH_SHORT).show();
+                finish();
+            }
         });
 
         Button resetButton = findViewById(R.id.btn_reset_settings);
-        resetButton.setOnClickListener(v -&gt; {
-            resetSettings();
-            loadSettings();
-            Toast.makeText(context, "设置已重置", Toast.LENGTH_SHORT).show();
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetSettings();
+                loadSettings();
+                Toast.makeText(context, "Settings reset", Toast.LENGTH_SHORT).show();
+            }
         });
 
         Button helpButton = findViewById(R.id.btn_help);
-        helpButton.setOnClickListener(v -&gt; {
-            Intent intent = new Intent(SettingsActivity.this, HelpActivity.class);
-            startActivity(intent);
+        helpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingsActivity.this, HelpActivity.class);
+                startActivity(intent);
+            }
         });
     }
 
     private void initVideoSettings() {
         Spinner resolutionSpinner = findViewById(R.id.spinner_video_resolution);
-        ArrayAdapter&lt;CharSequence&gt; resolutionAdapter = ArrayAdapter.createFromResource(this,
+        ArrayAdapter<CharSequence> resolutionAdapter = ArrayAdapter.createFromResource(this,
                 R.array.options_resolution_values, android.R.layout.simple_spinner_item);
         resolutionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         resolutionSpinner.setAdapter(resolutionAdapter);
 
         Spinner bitrateSpinner = findViewById(R.id.spinner_video_bitrate);
-        ArrayAdapter&lt;CharSequence&gt; bitrateAdapter = ArrayAdapter.createFromResource(this,
+        ArrayAdapter<CharSequence> bitrateAdapter = ArrayAdapter.createFromResource(this,
                 R.array.options_bitrate_keys, android.R.layout.simple_spinner_item);
         bitrateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         bitrateSpinner.setAdapter(bitrateAdapter);
 
         Spinner fpsSpinner = findViewById(R.id.spinner_fps);
-        ArrayAdapter&lt;CharSequence&gt; fpsAdapter = ArrayAdapter.createFromResource(this,
+        ArrayAdapter<CharSequence> fpsAdapter = ArrayAdapter.createFromResource(this,
                 R.array.options_fps_values, android.R.layout.simple_spinner_item);
         fpsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         fpsSpinner.setAdapter(fpsAdapter);
 
         Spinner codecSpinner = findViewById(R.id.spinner_video_codec);
-        ArrayAdapter&lt;CharSequence&gt; codecAdapter = ArrayAdapter.createFromResource(this,
+        ArrayAdapter<CharSequence> codecAdapter = ArrayAdapter.createFromResource(this,
                 R.array.options_video_codec, android.R.layout.simple_spinner_item);
         codecAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         codecSpinner.setAdapter(codecAdapter);
@@ -78,13 +87,13 @@ public class SettingsActivity extends Activity {
 
     private void initAudioSettings() {
         Spinner audioCodecSpinner = findViewById(R.id.spinner_audio_codec);
-        ArrayAdapter&lt;CharSequence&gt; audioCodecAdapter = ArrayAdapter.createFromResource(this,
+        ArrayAdapter<CharSequence> audioCodecAdapter = ArrayAdapter.createFromResource(this,
                 R.array.options_audio_codec, android.R.layout.simple_spinner_item);
         audioCodecAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         audioCodecSpinner.setAdapter(audioCodecAdapter);
 
         Spinner audioBitrateSpinner = findViewById(R.id.spinner_audio_bitrate);
-        ArrayAdapter&lt;CharSequence&gt; audioBitrateAdapter = ArrayAdapter.createFromResource(this,
+        ArrayAdapter<CharSequence> audioBitrateAdapter = ArrayAdapter.createFromResource(this,
                 R.array.options_audio_bitrate, android.R.layout.simple_spinner_item);
         audioBitrateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         audioBitrateSpinner.setAdapter(audioBitrateAdapter);
@@ -92,13 +101,13 @@ public class SettingsActivity extends Activity {
 
     private void initDeviceSettings() {
         Spinner displaySpinner = findViewById(R.id.spinner_display);
-        ArrayAdapter&lt;CharSequence&gt; displayAdapter = ArrayAdapter.createFromResource(this,
+        ArrayAdapter<CharSequence> displayAdapter = ArrayAdapter.createFromResource(this,
                 R.array.options_display, android.R.layout.simple_spinner_item);
         displayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         displaySpinner.setAdapter(displayAdapter);
 
         Spinner rotationSpinner = findViewById(R.id.spinner_rotation);
-        ArrayAdapter&lt;CharSequence&gt; rotationAdapter = ArrayAdapter.createFromResource(this,
+        ArrayAdapter<CharSequence> rotationAdapter = ArrayAdapter.createFromResource(this,
                 R.array.options_rotation, android.R.layout.simple_spinner_item);
         rotationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         rotationSpinner.setAdapter(rotationAdapter);
@@ -106,7 +115,7 @@ public class SettingsActivity extends Activity {
 
     private void initRecordSettings() {
         Spinner recordFormatSpinner = findViewById(R.id.spinner_record_format);
-        ArrayAdapter&lt;CharSequence&gt; recordFormatAdapter = ArrayAdapter.createFromResource(this,
+        ArrayAdapter<CharSequence> recordFormatAdapter = ArrayAdapter.createFromResource(this,
                 R.array.options_record_format, android.R.layout.simple_spinner_item);
         recordFormatAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         recordFormatSpinner.setAdapter(recordFormatAdapter);
