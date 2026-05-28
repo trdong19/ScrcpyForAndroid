@@ -260,6 +260,12 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
             startActivity(intent);
         });
 
+        Button logButton = findViewById(R.id.button_log);
+        logButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, LogActivity.class);
+            startActivity(intent);
+        });
+
 //        floatButton.setOnClickListener(v -> {
 //            getAttributes();
 //            showDisplayWindow();
@@ -584,7 +590,7 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
 //                    NetworkInterface int_f = en.nextElement();
 //                    for (Enumeration<InetAddress> enumIpAddr = int_f
 //                            .getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
-//                        InetAddress inetAddress = enumIpAddr.nextElement();
+//                        InetAddress inetAddress = enumIpAddr.next();
 //                        if (inetAddress instanceof Inet6Address) {
 //                            ipv6 = inetAddress;
 //                            continue;
@@ -796,64 +802,7 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
 
     private ScrcpyOptions buildScrcpyOptions() {
         ScrcpyOptions options = new ScrcpyOptions();
-
-        String[] videoCodecs = getResources().getStringArray(R.array.options_video_codec);
-        int codecIndex = PreUtils.get(context, Constant.PREF_VIDEO_CODEC, 0);
-        if (codecIndex >= 0 && codecIndex < videoCodecs.length) {
-            options.videoCodec = videoCodecs[codecIndex];
-        }
-
-        String[] fpsValues = getResources().getStringArray(R.array.options_fps_values);
-        int fpsIndex = PreUtils.get(context, Constant.PREF_VIDEO_FPS, 0);
-        if (fpsIndex >= 0 && fpsIndex < fpsValues.length) {
-            options.videoFps = Integer.parseInt(fpsValues[fpsIndex]);
-        }
-
-        String[] audioCodecs = getResources().getStringArray(R.array.options_audio_codec);
-        int audioCodecIndex = PreUtils.get(context, Constant.PREF_AUDIO_CODEC, 0);
-        if (audioCodecIndex >= 0 && audioCodecIndex < audioCodecs.length) {
-            options.audioCodec = audioCodecs[audioCodecIndex];
-        }
-
-        String[] audioBitrates = getResources().getStringArray(R.array.options_audio_bitrate);
-        int audioBitrateIndex = PreUtils.get(context, Constant.PREF_AUDIO_BITRATE, 0);
-        if (audioBitrateIndex >= 0 && audioBitrateIndex < audioBitrates.length) {
-            String bitrateStr = audioBitrates[audioBitrateIndex].split(" ")[0];
-            options.audioBitrate = Integer.parseInt(bitrateStr) * 1000;
-        }
-
-        String[] displays = getResources().getStringArray(R.array.options_display);
-        int displayIndex = PreUtils.get(context, Constant.PREF_DISPLAY, 0);
-        if (displayIndex > 0 && displayIndex < displays.length) {
-            options.displayId = Integer.parseInt(displays[displayIndex]);
-        }
-
-        String[] rotations = getResources().getStringArray(R.array.options_rotation);
-        int rotationIndex = PreUtils.get(context, Constant.PREF_ROTATION, 0);
-        if (rotationIndex >= 0 && rotationIndex < rotations.length - 1) {
-            options.rotation = Integer.parseInt(rotations[rotationIndex]);
-        }
-
-        options.showTouches = PreUtils.get(context, Constant.PREF_SHOW_TOUCHES, false);
-        options.stayAwake = PreUtils.get(context, Constant.PREF_STAY_AWAKE, false);
-        options.noVideo = PreUtils.get(context, Constant.PREF_NO_VIDEO, false);
-        options.noAudio = !PreUtils.get(context, Constant.PREF_AUDIO_ENABLE, true);
-        options.turnScreenOff = PreUtils.get(context, Constant.PREF_TURN_SCREEN_OFF, false);
-        options.turnScreenOffOnClose = PreUtils.get(context, Constant.PREF_TURN_SCREEN_OFF_ON_CLOSE, false);
         options.customArgs = PreUtils.get(context, Constant.PREF_CUSTOM_ARGS, "");
-
-        if (PreUtils.get(context, Constant.PREF_RECORD_ENABLE, false)) {
-            String recordPath = PreUtils.get(context, Constant.PREF_RECORD_PATH, "/sdcard/scrcpy/");
-            String timestamp = String.valueOf(System.currentTimeMillis());
-            String[] recordFormats = getResources().getStringArray(R.array.options_record_format);
-            int formatIndex = PreUtils.get(context, Constant.PREF_RECORD_FORMAT, 0);
-            String ext = "mkv";
-            if (formatIndex >= 0 && formatIndex < recordFormats.length) {
-                ext = recordFormats[formatIndex];
-            }
-            options.recordPath = recordPath + "scrcpy_" + timestamp + "." + ext;
-        }
-
         return options;
     }
 
