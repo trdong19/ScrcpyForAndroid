@@ -30,9 +30,9 @@ public class Constant {
     public static final String PREF_ROTATION = "rotation";
     public static final String PREF_SHOW_TOUCHES = "show_touches";
     public static final String PREF_STAY_AWAKE = "stay_awake";
-
-    public static final String PREF_KEYBOARD_INJECT = "keyboard_inject";
-    public static final String PREF_CONTROL_ENABLE = "control_enable";
+    public static final String PREF_TURN_SCREEN_OFF = "turn_screen_off";
+    public static final String PREF_TURN_SCREEN_OFF_ON_CLOSE = "turn_screen_off_on_close";
+    public static final String PREF_CUSTOM_ARGS = "custom_args";
 
     public static final String PREF_RECORD_ENABLE = "record_enable";
     public static final String PREF_RECORD_FORMAT = "record_format";
