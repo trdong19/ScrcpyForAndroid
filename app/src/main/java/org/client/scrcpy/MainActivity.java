@@ -769,7 +769,7 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
             Progress.showDialog(MainActivity.this, getString(R.string.please_wait));
             ThreadUtils.workPost(() -> {
                 AdbHelper.writeAssetsJarServer(App.mContext);
-                SendCommands.CmdStatus sendStatus = sendCommands.SendAdbCommands(context, serverHost,
+                SendCommands.CmdStatus sendStatus = sendCommands.executeAdbCommands(context, serverHost,
                         serverPort,
                         localForwardPort,
                         Scrcpy.LOCAL_IP,
@@ -836,15 +836,11 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
 
         options.showTouches = PreUtils.get(context, Constant.PREF_SHOW_TOUCHES, false);
         options.stayAwake = PreUtils.get(context, Constant.PREF_STAY_AWAKE, false);
-        options.noControl = !PreUtils.get(context, Constant.PREF_CONTROL_ENABLE, true);
         options.noVideo = PreUtils.get(context, Constant.PREF_NO_VIDEO, false);
         options.noAudio = !PreUtils.get(context, Constant.PREF_AUDIO_ENABLE, true);
-
-        String[] keyboardInjects = getResources().getStringArray(R.array.options_keyboard_inject);
-        int keyboardIndex = PreUtils.get(context, Constant.PREF_KEYBOARD_INJECT, 0);
-        if (keyboardIndex >= 0 && keyboardIndex < keyboardInjects.length) {
-            options.keyboardInject = keyboardInjects[keyboardIndex];
-        }
+        options.turnScreenOff = PreUtils.get(context, Constant.PREF_TURN_SCREEN_OFF, false);
+        options.turnScreenOffOnClose = PreUtils.get(context, Constant.PREF_TURN_SCREEN_OFF_ON_CLOSE, false);
+        options.customArgs = PreUtils.get(context, Constant.PREF_CUSTOM_ARGS, "");
 
         if (PreUtils.get(context, Constant.PREF_RECORD_ENABLE, false)) {
             String recordPath = PreUtils.get(context, Constant.PREF_RECORD_PATH, "/sdcard/scrcpy/");
