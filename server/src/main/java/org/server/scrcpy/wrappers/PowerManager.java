@@ -25,12 +25,12 @@ public final class PowerManager {
             try {
                 goToSleepMethod = manager.getClass().getMethod("goToSleep", long.class);
             } catch (NoSuchMethodException e) {
-                Ln.w("Could not find goToSleep method", e);
+                Ln.w("Could not find goToSleep method");
             }
             try {
                 wakeUpMethod = manager.getClass().getMethod("wakeUp", long.class);
             } catch (NoSuchMethodException e) {
-                Ln.w("Could not find wakeUp method", e);
+                Ln.w("Could not find wakeUp method");
             }
         } catch (NoSuchMethodException e) {
             throw new AssertionError(e);
