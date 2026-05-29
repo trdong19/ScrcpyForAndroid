@@ -167,6 +167,13 @@ public class SendCommands {
     }
 
     private void newAdbServerStart(String[] command) {
+        // 记录完整命令用于调试
+        StringBuilder cmdBuilder = new StringBuilder("Executing command: ");
+        for (String arg : command) {
+            cmdBuilder.append("'").append(arg).append("' ");
+        }
+        Log.i("Scrcpy", cmdBuilder.toString());
+        
         // 执行启动命令
         AdbHelper.adbCmd(App.mContext, command);
     }
