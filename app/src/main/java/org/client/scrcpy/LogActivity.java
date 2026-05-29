@@ -25,8 +25,10 @@ public class LogActivity extends Activity {
     private ScrollView scrollView;
     private Process logcatProcess;
     private boolean isReading = false;
+    private boolean showOnlyScrcpy = true; // 默认只显示scrcpy相关日志
     private Handler handler;
     private StringBuilder logBuilder = new StringBuilder();
+    private Button toggleButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,9 @@ public class LogActivity extends Activity {
             logBuilder = new StringBuilder();
             Toast.makeText(this, "日志已清空", Toast.LENGTH_SHORT).show();
         });
+
+        toggleButton = findViewById(R.id.btn_toggle_log);
+        toggleButton.setOnClickListener(v -> toggleLogFilter());
 
         Button downloadButton = findViewById(R.id.btn_download_log);
         downloadButton.setOnClickListener(v -> downloadLog());
@@ -78,11 +83,39 @@ public class LogActivity extends Activity {
         }
     }
 
+    private void toggleLogFilter() {
+        showOnlyScrcpy = !showOnlyScrcpy;
+        toggleButton.setText(showOnlyScrcpy ? "仅scrcpy" : "所有日志");
+        
+        // 重启日志读取
+        stopLogReading();
+        logTextView.setText("");
+        logBuilder = new StringBuilder();
+        startLogReading();
+        
+        Toast.makeText(this, showOnlyScrcpy ? "已切换：仅显示scrcpy日志" : "已切换：显示所有日志", Toast.LENGTH_SHORT).show();
+    }
+    
+    private void stopLogReading() {
+        isReading = false;
+        if (logcatProcess != null) {
+            logcatProcess.destroy();
+        }
+    }
+
     private void startLogReading() {
         isReading = true;
         new Thread(() -> {
             try {
-                logcatProcess = Runtime.getRuntime().exec("logcat -v time");
+                String logcatCmd;
+                if (showOnlyScrcpy) {
+                    // 只过滤显示 scrcpy 相关的日志，减少噪音
+                    logcatCmd = "logcat -v time *:S Scrcpy:I scrcpy:I";
+                } else {
+                    // 显示所有日志
+                    logcatCmd = "logcat -v time";
+                }
+                logcatProcess = Runtime.getRuntime().exec(logcatCmd);
                 BufferedReader reader = new BufferedReader(
                         new InputStreamReader(logcatProcess.getInputStream()));
 
@@ -106,9 +139,6 @@ public class LogActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        isReading = false;
-        if (logcatProcess != null) {
-            logcatProcess.destroy();
-        }
+        stopLogReading();
     }
 }
