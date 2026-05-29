@@ -153,6 +153,12 @@ public final class Server {
     }
 
     public static void main(String... args) throws Exception {
+        Ln.i("=== Server started ===");
+        Ln.i("Total arguments: " + args.length);
+        for (int i = 0; i < args.length; i++) {
+            Ln.i("  args[" + i + "] = '" + args[i] + "'");
+        }
+        
         Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
             @Override
             public void uncaughtException(Thread t, Throwable e) {
