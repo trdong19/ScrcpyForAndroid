@@ -94,6 +94,25 @@ public class SendCommands {
 
         String[] commands = commandList.toArray(new String[0]);
         
+        StringBuilder shellCommand = new StringBuilder();
+        for (int i = 3; i < commands.length; i++) {
+            if (i > 3) {
+                shellCommand.append(" ");
+            }
+            shellCommand.append(commands[i]);
+        }
+        
+        Log.i("Scrcpy", "Shell command to execute: " + shellCommand.toString());
+        
+        java.util.List<String> finalCommandList = new java.util.ArrayList<>();
+        finalCommandList.add("-s");
+        finalCommandList.add(ip + ":" + port);
+        finalCommandList.add("shell");
+        finalCommandList.add("-c");
+        finalCommandList.add(shellCommand.toString());
+        
+        String[] finalCommands = finalCommandList.toArray(new String[0]);
+        
         ThreadUtils.execute(() -> {
             try {
                 boolean serverIsRunning = AdbHelper.checkAdbServer();
@@ -105,7 +124,7 @@ public class SendCommands {
                 CmdStatus curStatus = startPortForward(context, ip, port, forwardport);
                 status.set(curStatus);
                 if (curStatus == CmdStatus.SUCCESS) {
-                    newAdbServerStart(commands);
+                    newAdbServerStart(finalCommands);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
