@@ -51,15 +51,10 @@ android {
         delete "../app/src/main/assets/scrcpy-server.jar"
     }
 
-//    tasks.whenTaskAdded { task ->
-//        task.finalizedBy(copyServer)
-//    }
-//    afterEvaluate {
-//        packageRelease.finalizedBy(copyServer)
-//    }
-//    afterEvaluate {
-//        packageDebug.finalizedBy(copyServer)
-//    }
+    afterEvaluate {
+        assembleRelease.finalizedBy(copyServer)
+        assembleDebug.finalizedBy(copyServer)
+    }
 }
 
 dependencies {
