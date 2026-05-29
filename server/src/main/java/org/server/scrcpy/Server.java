@@ -91,65 +91,79 @@ public final class Server {
         if (args.length < 4) {
             return options;
         }
-        // use "adb forward" instead of "adb tunnel"? (so the server must listen)
-        boolean tunnelForward = Boolean.parseBoolean(args[3]);
-        options.setTunnelForward(tunnelForward);
         
-        // 处理剩余的自定义参数
-        Ln.i("Starting to parse custom arguments, total args: " + args.length);
-        for (int i = 4; i < args.length; i++) {
-            String arg = args[i];
-            Ln.i("Parsing argument[" + i + "]: " + arg);
+        // 检查第4个参数是否是布尔值（tunnelForward）还是自定义参数
+        String arg3 = args[3];
+        if (arg3.equals("true") || arg3.equals("false")) {
+            // 传统格式：第4个参数是 tunnelForward
+            boolean tunnelForward = Boolean.parseBoolean(arg3);
+            options.setTunnelForward(tunnelForward);
             
-            if (arg.equals("--no-display")) {
-                options.setNoDisplay(true);
-            } else if (arg.equals("--turn-screen-off")) {
-                options.setTurnScreenOff(true);
-            } else if (arg.equals("--turn-screen-off-on-close")) {
-                options.setTurnScreenOffOnClose(true);
-            } else if (arg.equals("--show-touches")) {
-                options.setShowTouches(true);
-            } else if (arg.equals("--stay-awake")) {
-                options.setStayAwake(true);
-            } else if (arg.equals("--no-video")) {
-                options.setNoVideo(true);
-            } else if (arg.equals("--no-audio")) {
-                options.setNoAudio(true);
-            } else if (arg.startsWith("--video-codec=")) {
-                options.setVideoCodec(arg.substring("--video-codec=".length()));
-            } else if (arg.startsWith("--video-fps=")) {
-                try {
-                    options.setVideoFps(Integer.parseInt(arg.substring("--video-fps=".length())));
-                } catch (NumberFormatException e) {
-                    Ln.e("Invalid video-fps: " + arg);
-                }
-            } else if (arg.startsWith("--audio-codec=")) {
-                options.setAudioCodec(arg.substring("--audio-codec=".length()));
-            } else if (arg.startsWith("--audio-bit-rate=")) {
-                try {
-                    options.setAudioBitrate(Integer.parseInt(arg.substring("--audio-bit-rate=".length())));
-                } catch (NumberFormatException e) {
-                    Ln.e("Invalid audio-bit-rate: " + arg);
-                }
-            } else if (arg.startsWith("--display=")) {
-                try {
-                    options.setDisplayId(Integer.parseInt(arg.substring("--display=".length())));
-                } catch (NumberFormatException e) {
-                    Ln.e("Invalid display: " + arg);
-                }
-            } else if (arg.startsWith("--rotation=")) {
-                try {
-                    options.setRotation(Integer.parseInt(arg.substring("--rotation=".length())));
-                } catch (NumberFormatException e) {
-                    Ln.e("Invalid rotation: " + arg);
-                }
-            } else if (arg.startsWith("--record=")) {
-                options.setRecordPath(arg.substring("--record=".length()));
+            // 从第5个参数开始解析自定义参数
+            Ln.i("Starting to parse custom arguments from index 4, total args: " + args.length);
+            for (int i = 4; i < args.length; i++) {
+                parseArgument(options, args[i], i);
+            }
+        } else {
+            // 新格式：没有 tunnelForward，第4个参数开始就是自定义参数
+            Ln.i("No tunnelForward flag, starting to parse custom arguments from index 3, total args: " + args.length);
+            for (int i = 3; i < args.length; i++) {
+                parseArgument(options, args[i], i);
             }
         }
         
         Ln.i("Options created: noDisplay=" + options.isNoDisplay() + ", turnScreenOff=" + options.isTurnScreenOff());
         return options;
+    }
+    
+    private static void parseArgument(Options options, String arg, int index) {
+        Ln.i("Parsing argument[" + index + "]: " + arg);
+        
+        if (arg.equals("--no-display")) {
+            options.setNoDisplay(true);
+        } else if (arg.equals("--turn-screen-off")) {
+            options.setTurnScreenOff(true);
+        } else if (arg.equals("--turn-screen-off-on-close")) {
+            options.setTurnScreenOffOnClose(true);
+        } else if (arg.equals("--show-touches")) {
+            options.setShowTouches(true);
+        } else if (arg.equals("--stay-awake")) {
+            options.setStayAwake(true);
+        } else if (arg.equals("--no-video")) {
+            options.setNoVideo(true);
+        } else if (arg.equals("--no-audio")) {
+            options.setNoAudio(true);
+        } else if (arg.startsWith("--video-codec=")) {
+            options.setVideoCodec(arg.substring("--video-codec=".length()));
+        } else if (arg.startsWith("--video-fps=")) {
+            try {
+                options.setVideoFps(Integer.parseInt(arg.substring("--video-fps=".length())));
+            } catch (NumberFormatException e) {
+                Ln.e("Invalid video-fps: " + arg);
+            }
+        } else if (arg.startsWith("--audio-codec=")) {
+            options.setAudioCodec(arg.substring("--audio-codec=".length()));
+        } else if (arg.startsWith("--audio-bit-rate=")) {
+            try {
+                options.setAudioBitrate(Integer.parseInt(arg.substring("--audio-bit-rate=".length())));
+            } catch (NumberFormatException e) {
+                Ln.e("Invalid audio-bit-rate: " + arg);
+            }
+        } else if (arg.startsWith("--display=")) {
+            try {
+                options.setDisplayId(Integer.parseInt(arg.substring("--display=".length())));
+            } catch (NumberFormatException e) {
+                Ln.e("Invalid display: " + arg);
+            }
+        } else if (arg.startsWith("--rotation=")) {
+            try {
+                options.setRotation(Integer.parseInt(arg.substring("--rotation=".length())));
+            } catch (NumberFormatException e) {
+                Ln.e("Invalid rotation: " + arg);
+            }
+        } else if (arg.startsWith("--record=")) {
+            options.setRecordPath(arg.substring("--record=".length()));
+        }
     }
 
     public static void main(String... args) throws Exception {
