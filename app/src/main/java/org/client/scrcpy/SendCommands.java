@@ -39,6 +39,7 @@ public class SendCommands {
         commandList.add("/" + localip);
         commandList.add(Long.toString(size));
         commandList.add(Long.toString(bitrate));
+        commandList.add("false"); // 添加 tunnelForward 参数，确保自定义参数能被正确解析
 
         if (options != null) {
             if (options.videoCodec != null && !options.videoCodec.isEmpty()) {
